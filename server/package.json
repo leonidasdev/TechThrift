@@ -1,6 +1,6 @@
 {
-  "name": "spanish-retailers-backend",
-  "version": "1.0.0",
+  "name": "techthrift-server",
+  "version": "0.0.1",
   "description": "Production-ready backend API for Spanish retailers price comparison with scheduled scraping",
   "main": "src/server.js",
   "type": "module",
@@ -50,7 +50,7 @@
     "express",
     "nodejs"
   ],
-  "author": "Price Comparison Team",
+  "author": "TechThrift Team",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",

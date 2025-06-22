@@ -5,7 +5,6 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  root: './client',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
@@ -31,13 +30,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'client/src'),
-      '@components': resolve(__dirname, 'client/src/components'),
-      '@pages': resolve(__dirname, 'client/src/pages'),
-      '@hooks': resolve(__dirname, 'client/src/hooks'),
-      '@services': resolve(__dirname, 'client/src/services'),
-      '@types': resolve(__dirname, 'client/src/types'),
-      '@utils': resolve(__dirname, 'client/src/utils')
+      '@': resolve(__dirname, 'src'),
+      '@components': resolve(__dirname, 'src/components'),
+      '@pages': resolve(__dirname, 'src/pages'),
+      '@hooks': resolve(__dirname, 'src/hooks'),
+      '@services': resolve(__dirname, 'src/services'),
+      '@types': resolve(__dirname, 'src/types'),
+      '@utils': resolve(__dirname, 'src/utils')
     }
   },
   server: {
@@ -58,6 +57,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['client/src/tests/setup.ts']
+    setupFiles: ['src/tests/setup.ts']
   }
 });
