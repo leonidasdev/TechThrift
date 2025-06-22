@@ -1,6 +1,6 @@
 # TechThrift - Spanish Price Comparison Platform
 
-A production-ready full-stack application that compares product prices across major Spanish retailers: Amazon.es, MediaMarkt, PCComponentes, and El Corte Inglés.
+A full-stack application that compares product prices across major Spanish retailers: Amazon.es, MediaMarkt, PCComponentes, and El Corte Inglés.
 
 ## 🚀 Features
 
@@ -237,9 +237,9 @@ LOG_LEVEL=warn
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feature/cool-feature`)
+3. Commit your changes (`git commit -m 'feat: cool feature'`)
+4. Push to the branch (`git push origin feature/cool-feature`)
 5. Open a Pull Request
 
 ## 📄 License
@@ -255,9 +255,9 @@ For support and questions:
 
 ## 🔄 Changelog
 
-### v1.0.0
-- Initial production release
+### v0.0.1
+- Initial prototype
 - Full-stack price comparison platform
 - Web scraping for 4 Spanish retailers
 - Real-time search and comparison
-- Production-ready security and monitoring
+- Working progress security and monitoring
