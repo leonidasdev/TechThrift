@@ -1,263 +1,274 @@
 # TechThrift - Spanish Price Comparison Platform
 
-A full-stack application that compares product prices across major Spanish retailers: Amazon.es, MediaMarkt, PCComponentes, and El Corte Inglés.
+TechThrift is a comprehensive price comparison platform that helps Spanish consumers find the best deals across major retailers including Amazon.es, MediaMarkt, PCComponentes, and El Corte Inglés.
 
 ## 🚀 Features
 
-### Frontend (React + TypeScript)
-- **Modern React Architecture**: Functional components with hooks, lazy loading, and code splitting
-- **Responsive Design**: Desktop-first layout optimized for all screen sizes
-- **Advanced Search**: Text and image-based product search with intelligent suggestions
-- **Real-time Comparison**: Side-by-side product comparison with best deal highlighting
-- **Accessibility**: ARIA labels, keyboard navigation, and screen reader support
-- **Performance Optimized**: Memoization, debounced inputs, and optimized bundle size
+- **Multi-Store Price Comparison**: Compare prices across major Spanish retailers
+- **Real-time Search**: Instant product search with live results
+- **Smart Filtering**: Filter by price range, store, and product categories
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Fast Performance**: Built with modern web technologies for optimal speed
 
-### Backend (Node.js + Express)
-- **Web Scraping**: Automated data collection from 4 major Spanish retailers
-- **RESTful API**: Clean, documented endpoints with proper error handling
-- **Data Persistence**: Local JSON storage with duplicate prevention
-- **Security**: Rate limiting, input validation, CORS, and security headers
-- **Monitoring**: Comprehensive logging, health checks, and error tracking
-- **Production Ready**: Graceful shutdown, environment configuration, and deployment scripts
+## 🛠️ Tech Stack
 
-## 📋 Prerequisites
+### Frontend (Client)
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+- **Axios** for API communication
+- **Lucide React** for icons
 
-- Node.js >= 18.0.0
-- npm >= 8.0.0
-
-## 🛠️ Installation
-
-### 1. Clone the repository
-```bash
-git clone <repository-url>
-cd spanish-price-comparison
-```
-
-### 2. Install frontend dependencies
-```bash
-npm install
-```
-
-### 3. Install backend dependencies
-```bash
-cd server
-npm install
-cd ..
-```
-
-### 4. Environment Configuration
-
-#### Frontend (.env)
-```bash
-# Create .env file in root directory
-VITE_API_URL=http://localhost:3001/api
-VITE_APP_NAME=TechThrift
-VITE_APP_VERSION=1.0.0
-```
-
-#### Backend (server/.env)
-```bash
-# Copy example environment file
-cp server/.env.example server/.env
-
-# Edit server/.env with your configuration
-PORT=3001
-NODE_ENV=development
-LOG_LEVEL=info
-ALLOWED_ORIGINS=http://localhost:5173
-```
-
-## 🚀 Development
-
-### Start the development servers
-
-#### Terminal 1 - Backend
-```bash
-cd server
-npm run dev
-```
-
-#### Terminal 2 - Frontend
-```bash
-npm run dev
-```
-
-The application will be available at:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3001/api
-- Health Check: http://localhost:3001/api/health
-
-## 🏗️ Production Build
-
-### Frontend
-```bash
-npm run build
-npm run preview
-```
-
-### Backend
-```bash
-cd server
-npm start
-```
-
-## 📚 API Documentation
-
-### Core Endpoints
-
-#### Products
-- `GET /api/products?q=<query>` - Search products from scraped data
-- `GET /api/products/stats` - Get scraping statistics
-
-#### Search
-- `GET /api/search?q=<query>` - Search across all retailers
-- `GET /api/search?q=laptop&minPrice=500&maxPrice=1000` - Search with filters
-
-#### Retailers
-- `GET /api/retailers` - Get supported retailers
-- `GET /api/retailers/status` - Check retailer availability
-
-#### Scraper
-- `GET /api/scraper/status` - Get scraping status
-- `POST /api/scraper/trigger` - Manually trigger scraping
-
-#### Health & Monitoring
-- `GET /api/health` - System health check
-- `GET /api` - API documentation
-
-### Rate Limits
-- General: 100 requests per 15 minutes
-- Search: 50 requests per 5 minutes
-
-## 🧪 Testing
-
-### Frontend
-```bash
-npm run test
-npm run test:coverage
-```
-
-### Backend
-```bash
-cd server
-npm run test
-npm run test:watch
-```
-
-## 🔒 Security Features
-
-- **Input Validation**: Joi schema validation for all inputs
-- **Rate Limiting**: Configurable rate limits per endpoint
-- **CORS Protection**: Whitelist-based origin control
-- **Security Headers**: Helmet.js for secure HTTP headers
-- **Input Sanitization**: XSS and injection prevention
-- **Error Handling**: Secure error responses without data leakage
-
-## 📊 Monitoring & Logging
-
-- **Winston Logging**: Structured logging with multiple transports
-- **Health Checks**: Comprehensive system status monitoring
-- **Error Tracking**: Detailed error logging and reporting
-- **Performance Metrics**: Request timing and system resource monitoring
-
-## 🏪 Supported Retailers
-
-| Retailer | Integration Type | Status |
-|----------|------------------|--------|
-| Amazon.es | Web Scraping | ✅ Active |
-| MediaMarkt | Web Scraping | ✅ Active |
-| PCComponentes | Web Scraping | ✅ Active |
-| El Corte Inglés | Web Scraping | ✅ Active |
+### Backend (Server)
+- **Node.js** with Express
+- **JavaScript** with ES modules
+- **Web Scraping** with Puppeteer and Cheerio
+- **SQLite** database
+- **Winston** for logging
 
 ## 📁 Project Structure
 
 ```
-spanish-price-comparison/
-├── src/                          # Frontend source code
-│   ├── components/               # React components
-│   │   ├── common/              # Reusable components
-│   │   ├── Layout/              # Layout components
-│   │   ├── Products/            # Product-related components
-│   │   └── Search/              # Search components
-│   ├── hooks/                   # Custom React hooks
-│   ├── pages/                   # Page components
-│   ├── services/                # API services
-│   ├── types/                   # TypeScript type definitions
-│   └── utils/                   # Utility functions
-├── server/                      # Backend source code
+techthrift/
+├── .gitignore                  # Git ignore rules
+├── package.json                # Workspace configuration
+├── README.md                   # Project documentation
+├── tsconfig.json               # Root TypeScript configuration
+├── tsconfig.node.json          # Node.js TypeScript configuration
+│
+├── client/                     # Frontend React application
 │   ├── src/
-│   │   ├── controllers/         # Route controllers
-│   │   ├── middleware/          # Express middleware
-│   │   ├── routes/              # API routes
-│   │   ├── scraper/             # Web scraping logic
-│   │   ├── services/            # Business logic
-│   │   └── utils/               # Utility functions
-│   ├── data/                    # Scraped data storage
-│   └── logs/                    # Application logs
-└── docs/                        # Documentation
+│   │   ├── App.tsx             # Main App component
+│   │   ├── main.tsx            # Application entry point
+│   │   ├── index.css           # Global styles
+│   │   ├── vite-env.d.ts       # Vite environment types
+│   │   ├── components/         # UI components
+│   │   │   ├── common/         # Shared components
+│   │   │   ├── Comparison/     # Price comparison components
+│   │   │   ├── Filters/        # Filter components
+│   │   │   ├── Layout/         # Layout components
+│   │   │   ├── Products/       # Product-related components
+│   │   │   └── Search/         # Search components
+│   │   ├── data/               # Static data and configurations
+│   │   ├── hooks/              # Custom React hooks
+│   │   ├── pages/              # Route-based page components
+│   │   ├── services/           # API service handlers
+│   │   ├── tests/              # Frontend test files
+│   │   └── types/              # TypeScript type definitions
+│   ├── index.html              # HTML template
+│   ├── package.json            # Client dependencies
+│   ├── vite.config.ts          # Vite configuration
+│   ├── tailwind.config.js      # Tailwind CSS configuration
+│   ├── postcss.config.js       # PostCSS configuration
+│   ├── eslint.config.js        # ESLint configuration
+│   ├── tsconfig.json           # TypeScript project references
+│   ├── tsconfig.app.json       # App-specific TypeScript config
+│   └── tsconfig.node.json      # Build tools TypeScript config
+│
+└── server/                     # Backend Node.js application
+    ├── src/
+    │   ├── server.js           # Main server entry point
+    │   ├── controllers/        # Route controllers
+    │   │   └── alertsController.js
+    │   ├── database/           # Database configuration
+    │   ├── middleware/         # Express middleware
+    │   ├── routes/             # API route definitions
+    │   ├── scraper/            # Web scraping logic
+    │   ├── services/           # Business logic services
+    │   ├── tests/              # Server test files
+    │   └── utils/              # Backend utility functions
+    ├── .env.example            # Environment variables template
+    ├── package.json            # Server dependencies
+    └── README.md               # Server-specific documentation
 ```
 
-## 🚀 Deployment
+## 🚀 Getting Started
 
-### Frontend (Netlify/Vercel)
+### Prerequisites
+
+- **Node.js** >= 18.0.0
+- **npm** >= 8.0.0
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/techthrift.git
+   cd techthrift
+   ```
+
+2. **Install all dependencies**
+   ```bash
+   npm run install:all
+   ```
+
+   This command will install dependencies for the root workspace, client, and server.
+
+### Development
+
+#### Start Both Frontend and Backend
+```bash
+npm run dev
+```
+This starts both the client and server concurrently:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3001
+
+#### Start Individual Services
+
+**Frontend only:**
+```bash
+npm run dev:client
+```
+
+**Backend only:**
+```bash
+npm run dev:server
+```
+
+**Or navigate to specific directories:**
+```bash
+# Frontend
+cd client
+npm run dev
+
+# Backend
+cd server
+npm run dev
+```
+
+### Building for Production
+
+#### Build Both Applications
 ```bash
 npm run build
-# Deploy dist/ folder
 ```
 
-### Backend (Railway/Heroku/VPS)
+#### Build Individual Applications
 ```bash
-cd server
-npm start
+# Build frontend only
+npm run build:client
+
+# Build backend only
+npm run build:server
 ```
 
-### Environment Variables for Production
+### Other Commands
+
+#### Linting
 ```bash
-NODE_ENV=production
-PORT=3001
-ALLOWED_ORIGINS=https://your-domain.com
-LOG_LEVEL=warn
+# Lint client code
+npm run lint
+
+# Auto-fix linting issues
+cd client
+npm run lint:fix
 ```
+
+#### Testing
+```bash
+# Run all tests
+npm run test
+
+# Run client tests only
+cd client
+npm run test
+
+# Run tests with UI
+cd client
+npm run test:ui
+
+# Run tests with coverage
+cd client
+npm run test:coverage
+```
+
+#### Type Checking
+```bash
+# Check TypeScript types
+cd client
+npm run type-check
+```
+
+## 🏪 Supported Stores
+
+- **Amazon.es** - Spain's largest online marketplace
+- **MediaMarkt** - Electronics and technology retailer
+- **PCComponentes** - Computer components and electronics
+- **El Corte Inglés** - Premium department store chain
 
 ## 🔧 Configuration
 
-### Scraping Configuration
-- **Interval**: Every 6 hours (configurable)
-- **Delay**: 2 seconds between requests
-- **Timeout**: 30 seconds per request
-- **Retries**: 3 attempts per failed request
+### Environment Variables
 
-### Performance Optimization
-- **Code Splitting**: Lazy-loaded routes
-- **Memoization**: React.memo and useMemo
-- **Debouncing**: 300ms search input delay
-- **Compression**: Gzip compression enabled
-- **Caching**: Browser and API response caching
+Create `.env` files in the appropriate directories:
+
+**Client (.env)**
+```env
+VITE_API_URL=http://localhost:3001/api
+```
+
+**Server (.env)**
+```env
+PORT=3001
+NODE_ENV=development
+```
+
+### Vite Configuration
+
+The Vite configuration includes:
+- Path aliases for clean imports
+- Proxy setup for API calls
+- Optimized build settings
+- Development server configuration
+
+### API Proxy
+
+The frontend is configured to proxy API calls to the backend:
+- Development: `http://localhost:3001/api`
+- All `/api` requests
+
+## 🚀 Deployment
+
+### Frontend Deployment
+The client builds to a `dist` folder that can be deployed to any static hosting service:
+- Vercel
+- Netlify
+- GitHub Pages
+
+### Backend Deployment
+The server can be deployed to:
+- Railway
+- Heroku
+- DigitalOcean
+- AWS
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/cool-feature`)
-3. Commit your changes (`git commit -m 'feat: cool feature'`)
-4. Push to the branch (`git push origin feature/cool-feature`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
-For support and questions:
-- Create an issue on GitHub
-- Check the API documentation at `/api`
-- Review the health check at `/api/health`
+If you encounter any issues or have questions:
 
-## 🔄 Changelog
+1. Check the [documentation](docs/)
+2. Search existing [GitHub Issues](https://github.com/leonidasdev/techthrift/issues)
+3. Create a new issue if needed
 
-### v0.0.1
-- Initial prototype
-- Full-stack price comparison platform
-- Web scraping for 4 Spanish retailers
-- Real-time search and comparison
-- Working progress security and monitoring
+## 🏗️ Development Workflow
+
+1. **Start development servers**: `npm run dev`
+2. **Make changes** to client or server code
+3. **Hot reload** automatically updates the application
+4. **Test your changes**: `npm run test`
+5. **Lint your code**: `npm run lint`
+6. **Build for production**: `npm run build`
